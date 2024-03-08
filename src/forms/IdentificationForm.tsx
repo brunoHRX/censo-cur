@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+// import React, { useState } from 'react';
 import { z } from "zod"
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -35,11 +35,11 @@ const formSchema = z.object({
 })
 
 export default function InicialForm() {
-  const [name, setName] = useState('');
-  const [location, setLoction] = useState('');
-  const [phone, setPhone] = useState('');
-  const [job, setJob] = useState('');
-  const [censo, setCenso] = useState('');
+  // const [name, setName] = useState('');
+  // const [location, setLoction] = useState('');
+  // const [phone, setPhone] = useState('');
+  // const [job, setJob] = useState('');
+  // const [censo, setCenso] = useState('');
 
 
   const form = useForm<z.infer<typeof formSchema>>({

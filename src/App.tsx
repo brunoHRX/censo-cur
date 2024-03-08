@@ -27,7 +27,7 @@ export function App() {
         <div className="mx-auto my-6 max-w-lg">
           <Card>
             <CardHeader>
-              <CardTitle className='font-bold text-xl'>DADOS DE ITENDIFICAÇÃO</CardTitle>
+              <CardTitle className='font-bold text-xl'>DADOS DE IDENTIFICAÇÃO</CardTitle>
               <CardDescription>
                 Este Censo destina-se a informar a situação da Unidade ao Coordenador de Urgências.
               </CardDescription>
