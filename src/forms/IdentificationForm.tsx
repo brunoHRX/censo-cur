@@ -2,7 +2,7 @@
 import { z } from "zod"
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod'
-
+import { useFormContext } from "@/contexts/FormContext";
 import { Input } from "@/components/ui/input"
 import {
   Select,
@@ -12,6 +12,12 @@ import {
   SelectValue
 } from "@/components/ui/select"
 import { Button } from "@/components/ui/button"
+
+import {
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 
 import {
@@ -24,8 +30,6 @@ import {
 } from "@/components/ui/form"
 
 
-
-
 const formSchema = z.object({
   name: z.string().min(2, { message: "Nome do responsável é obrigatório" }),
   location: z.string().min(2, { message: "A unidade referente é obrigatória" }),
@@ -34,12 +38,11 @@ const formSchema = z.object({
   censo: z.string({required_error: "Selecione um Censo para enviar!"})
 })
 
-export default function InicialForm() {
-  // const [name, setName] = useState('');
-  // const [location, setLoction] = useState('');
-  // const [phone, setPhone] = useState('');
-  // const [job, setJob] = useState('');
-  // const [censo, setCenso] = useState('');
+
+
+export default function InicialForm( ) {
+
+  const { onFormChange } = useFormContext();
 
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -61,6 +64,12 @@ export default function InicialForm() {
 
   return (
     <main className='flex max-h-screen flex-col items-center justify-between p-2'>
+      <CardHeader>
+        <CardTitle className='font-bold text-xl'>DADOS DE IDENTIFICAÇÃO</CardTitle>
+        <CardDescription>
+          Este Censo destina-se a informar a situação da Unidade ao Coordenador de Urgências.
+        </CardDescription>
+      </CardHeader>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(handleSubmit)} className='max-w-md w-full flex flex-col gap-4'>
           <FormField
@@ -159,8 +168,9 @@ export default function InicialForm() {
                       </FormControl>
                       <SelectContent>
                         <SelectItem value='padrao'>Censo Padrão</SelectItem>
-                        <SelectItem value='equipe'>Censo de Classificação</SelectItem>
-                        <SelectItem value='equipamentos'>Censo de Equipe</SelectItem>
+                        <SelectItem value='fichas'>Censo de Classificação</SelectItem>
+                        <SelectItem value='equipe'>Censo de Equipe</SelectItem>
+                        <SelectItem value='EquipmentForm'>Censo de Equipamentos</SelectItem>
                         <SelectItem value='pacientes'>Censo Pacientes</SelectItem>
                         <SelectItem value='emac'>Solicitação da EMAC</SelectItem>
                       </SelectContent>
@@ -171,21 +181,12 @@ export default function InicialForm() {
             }
           />
           
-          <Button type="submit" className='w-full'>
-            Proximo
+          <Button type="submit" className='w-full' onClick={() => onFormChange('EquipmentForm')}>
+            Próximo
           </Button>
         </form>
       </Form>
     </main>
-
-    // <form onSubmit={handleSubmit} className="space-y-4">
-    //   <Input label="Nome do responsável pelo preenchimento" value={name} onChange={(e) => setName(e.target.value)} />
-    //   <Input label="Qual unidade as informações se referem" value={location} onChange={(e) => setLoction(e.target.value)} />
-    //   <Input label="Telefone de quem está fazendo o preenchimento" value={phone} onChange={(e) => setPhone(e.target.value)} />
-    //   <Input label="Cargo ou Função" value={job} onChange={(e) => setJob(e.target.value)} />
-    //   <Select label="Qual Censo deseja Enviar?" options={censoOptions} selected={censo} onChange={(value) => setCenso(value)} />
-    //   <Button type="submit">Enviar</Button>
-    // </form>
   );
 };
 
