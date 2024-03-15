@@ -23,6 +23,7 @@ import {
 import {
   Form,
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -32,7 +33,7 @@ import {
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "Nome do responsável é obrigatório" }),
-  location: z.string().min(2, { message: "A unidade referente é obrigatória" }),
+  location: z.string({required_error: "Selecione uma Unidade"}),
   phone: z.string().min(2, { message: "Telefone é obrigatório" }).regex(/^\+?[1-9]\d{1,14}$/, { message: "Telefone inválido" }), // Regex simples para validação de telefone internacional
   job: z.string().min(2, { message: "Cargo ou função é obrigatório" }),
   censo: z.string({required_error: "Selecione um Censo para enviar!"})
@@ -43,13 +44,12 @@ const formSchema = z.object({
 export default function InicialForm( ) {
 
   const { onFormChange } = useFormContext();
-
+  
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
-      location: "",
       phone: "",
       job: ""
     }
@@ -57,7 +57,9 @@ export default function InicialForm( ) {
 
 
   const handleSubmit = (values: z.infer<typeof formSchema>) => {
+    
     console.log({ values});
+    onFormChange(values.censo);
     // Aqui você pode redirecionar o usuário para o formulário específico do censo selecionado
     // e passar as informações usando o contexto do React, Redux ou outra ferramenta de estado.
   };
@@ -100,13 +102,26 @@ export default function InicialForm( ) {
               ({field}) => {
                 return <FormItem>
                   <FormLabel>Qual a sua Unidade de Saúde?</FormLabel>
-                  <FormControl>
-                    <Input
-                      placeholder='Qual a sua unidade?' 
-                      className='text-cur-dark' 
-                      {...field}
-                    />
-                  </FormControl>
+                  <Select onValueChange={field.onChange} defaultValue={field.value}>
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Escolha uma Unidaded" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        <SelectItem value='UPA.ALMEIDA'>UPA VILA ALMEIDA</SelectItem>
+                        <SelectItem value='UPA.CORONEL'>UPA CORONEL ANTONINO</SelectItem>
+                        <SelectItem value='UPA.SANTA'>UPA SANTA MONICA</SelectItem>
+                        <SelectItem value='UPA.UNIVERSITARIO'>UPA UNIVERSITARIO</SelectItem>
+                        <SelectItem value='UPA.LEBLON'>UPA LEBLON</SelectItem>
+                        <SelectItem value='UPA.MORENINHAS'>UPA MORENINHAS</SelectItem>
+                        <SelectItem value='CRS.COOPHAVILA'>CRS COOPHAVILA</SelectItem>
+                        <SelectItem value='CRS.NOVA'>CRS NOVA BAHIA</SelectItem>
+                        <SelectItem value='CRS.TIRADENTES'>CRS TIRADENTES</SelectItem>
+                        <SelectItem value='CRS.AERO'>CRS AERO RANCHO</SelectItem>
+
+                      </SelectContent>
+                    </Select>
                   <FormMessage/>
                 </FormItem>
               }
@@ -139,7 +154,7 @@ export default function InicialForm( ) {
             render={
               ({field}) => {
                 return <FormItem>
-                  <FormLabel>Cargo ou Função (ex: Enfermeira - Administrativo - Gerente)</FormLabel>
+                  <FormLabel>Cargo ou Função</FormLabel>
                   <FormControl>
                     <Input
                       placeholder='Informe sua Função ou Cargo' 
@@ -147,6 +162,9 @@ export default function InicialForm( ) {
                       {...field}
                     />
                   </FormControl>
+                  <FormDescription>
+                  (ex: Enfermeira - Administrativo - Gerente)
+                  </FormDescription>
                   <FormMessage/>
                 </FormItem>
               }
@@ -181,7 +199,7 @@ export default function InicialForm( ) {
             }
           />
           
-          <Button type="submit" className='w-full' onClick={() => onFormChange('EquipmentForm')}>
+          <Button type="submit" className='w-full' >
             Próximo
           </Button>
         </form>
