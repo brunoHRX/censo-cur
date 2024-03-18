@@ -42,7 +42,7 @@ export function App() {
               </Card>
             </div>
             <div className=" flex justify-center items-center align-text-bottom pt-4 pb-1">
-              <p className='text-xs'>©Champs. Since 2024</p>
+              <p className='text-xs'>© Champs. Since 2024</p>
             </div>
           </ThemeProvider>
         </FormProvider>
