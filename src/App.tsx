@@ -36,7 +36,7 @@ export function App() {
                 <CardContent>
                   {activeForm === 'InicialForm' && <InicialForm/>}
                   {activeForm === 'EquipmentForm' && <EquipmentForm/>}
-                  {activeForm === 'Fichas' && <Classification/>}
+                  {activeForm === 'Classification' && <Classification/>}
                   {activeForm === 'ReviewPage' && <ReviewPage/>}
                 </CardContent>
               </Card>
