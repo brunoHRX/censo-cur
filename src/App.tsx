@@ -1,7 +1,6 @@
 import './styles/global.css'
-import { useState } from 'react'
 
-import { FormProvider } from './contexts/FormContext'
+import { FormProvider, useFormContext } from './contexts/FormContext'
 import { FormDataProvider } from './contexts/DataFormContext';
 import { ThemeProvider } from './components/theme-provider';
 
@@ -21,27 +20,40 @@ import {
 
 export function App() {
 
-  const [activeForm, setActiveForm] = useState('InicialForm');
+  const FormSwitch = () => {
+    const {activeForm} = useFormContext();
+    console.log(activeForm);
 
-  const onFormChange = (formName: string) => {
-    setActiveForm(formName);
+    switch (activeForm) {
+      case 'InicialForm':
+        return <InicialForm />;
+      case 'EquipmentForm':
+        return <EquipmentForm  />;
+      case 'Classification':
+        return <Classification  />;
+      case 'TeamForm':
+        return <TeamForm  />;
+      case 'EMAC':
+        return <EMAC  />;
+      case 'ReviewPage':
+        return <ReviewPage  />;
+      default:
+        return <InicialForm />;
+    }
   };
+
+
 
   return (
     <>
-      <FormDataProvider>
-        <FormProvider onFormChange={onFormChange}>
+      <FormProvider>
+        <FormDataProvider>
           <ThemeProvider defaultTheme='dark' storageKey='vite-ui-theme'>
             <Header />
             <div className="mx-auto my-6 max-w-lg">
               <Card>
                 <CardContent>
-                  {activeForm === 'InicialForm' && <InicialForm/>}
-                  {activeForm === 'EquipmentForm' && <EquipmentForm/>}
-                  {activeForm === 'Classification' && <Classification/>}
-                  {activeForm === 'TeamForm' && <TeamForm/>}
-                  {activeForm === 'EMAC' && <EMAC/>}
-                  {activeForm === 'ReviewPage' && <ReviewPage/>}
+                  <FormSwitch/>
                 </CardContent>
               </Card>
             </div>
@@ -49,8 +61,8 @@ export function App() {
               <p className='text-xs'>© Champs. Since 2024</p>
             </div>
           </ThemeProvider>
-        </FormProvider>
-      </FormDataProvider>
+        </FormDataProvider>
+      </FormProvider>
         
     </>
 

@@ -52,40 +52,16 @@ const formSchema = z.object({
   hasAutoclave: z.boolean({
     required_error: "É obrigatório selecionar uma opção.",
   }),
-  // monitors: z.number({
-  //   required_error: "É obrigatório informar um valor.",
-  // }).min(0).max(9),
-  // oximeters: z.number({
-  //   required_error: "É obrigatório informar um valor.",
-  // }).min(0).max(9),
-  // defibrillators: z.number({
-  //   required_error: "É obrigatório informar um valor.",
-  // }).min(0).max(9),
-  // ecgs: z.number({
-  //   required_error: "É obrigatório informar um valor.",
-  // }).min(0).max(9),
-  // telecardios: z.number({
-  //   required_error: "É obrigatório informar um valor.",
-  // }).min(0).max(9),
-  // fetalMonitors: z.number({
-  //   required_error: "É obrigatório informar um valor.",
-  // }).min(0).max(9),
-  // hasXRay: z.boolean({
-  //   required_error: "É obrigatório selecionar uma opção.",
-  // }),
-  // hasAutoclave: z.boolean({
-  //   required_error: "É obrigatório selecionar uma opção.",
-  // }),
 });
 
-// TypeScript interface for the form data, derived from the zod schema
 
 
 export default function EquipmentForm() {
 
   const { onFormChange } = useFormContext();
-  // const { formData, setFormData, submitAllForms } = useFormDataContext();
+  const { goBack } = useFormContext();
   const { setFormData } = useFormDataContext();
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -310,9 +286,14 @@ export default function EquipmentForm() {
               }
             }
           />
-          <Button type="submit" className='w-full'>
-            Próximo
-          </Button>
+          <div className="buttons w-full flex justify-between pt-4">
+            <Button type="button" onClick={goBack} className=' w-40'>
+              Voltar
+            </Button>
+            <Button type="submit" className='w-40'>
+              Próximo
+            </Button>
+          </div>
         </form>
       </Form>
     </main>

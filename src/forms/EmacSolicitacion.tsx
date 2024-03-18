@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useFormContext } from "@/contexts/FormContext";
 
 import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
@@ -45,6 +46,7 @@ const formSchema = z.object({
 
 
 export default function EMAC() {
+  const { goBack } = useFormContext();
 
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -113,9 +115,14 @@ export default function EMAC() {
                 }
               }
             />
-          <Button type="submit" className='w-full'>
-            Próximo
-          </Button>
+          <div className="buttons w-full flex justify-between pt-4">
+            <Button type="button" onClick={goBack} className=' w-40'>
+              Voltar
+            </Button>
+            <Button type="submit" className='w-40'>
+              Próximo
+            </Button>
+          </div>
         </form>
       </Form>
     </main>

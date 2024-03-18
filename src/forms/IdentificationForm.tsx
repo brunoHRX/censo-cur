@@ -59,7 +59,7 @@ export default function InicialForm( ) {
 
 
   const handleSubmit = (values: z.infer<typeof formSchema>) => {
-    setFormData({...formData, ...values})
+    setFormData(currentFormData => ({ ...currentFormData, ...values }))
     console.log({ setFormData});
     onFormChange(values.censo);
     // Aqui você pode redirecionar o usuário para o formulário específico do censo selecionado

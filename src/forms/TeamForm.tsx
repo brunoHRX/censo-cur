@@ -1,6 +1,8 @@
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 
+import { useFormContext } from "@/contexts/FormContext";
+
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 
@@ -42,7 +44,7 @@ const formSchema = z.object({
 
 
 export default function TeamForm() {
-
+  const { goBack } = useFormContext();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -159,13 +161,18 @@ export default function TeamForm() {
               }
             />
           </div>
-            <FormDescription>
-              (Resposta deve ser em numeros inteiros de 0 até 9)
-            </FormDescription>
-          
-          <Button type="submit" className='w-full'>
-            Próximo
-          </Button>
+          <FormDescription>
+            (Resposta deve ser em numeros inteiros de 0 até 9)
+          </FormDescription>
+        
+          <div className="buttons w-full flex justify-between pt-4">
+            <Button type="button" onClick={goBack} className=' w-40'>
+              Voltar
+            </Button>
+            <Button type="submit" className='w-40'>
+              Próximo
+            </Button>
+          </div>
         </form>
       </Form>
     </main>

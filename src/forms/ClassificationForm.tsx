@@ -1,6 +1,9 @@
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 
+import { useFormContext } from "@/contexts/FormContext";
+
+
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Switch } from "@/components/ui/switch"
@@ -93,6 +96,7 @@ const formSchema = z.object({
 export default function Classification() {
 
   const [pediatric, setPediatric] = useState(false)
+  const { goBack } = useFormContext();
 
   const hasPediatric = () => {
     setPediatric(setPediatric => !setPediatric)
@@ -583,10 +587,15 @@ export default function Classification() {
               </div>
             </div>
           )}
-          
-          <Button type="submit" className='w-full'>
-            Próximo
-          </Button>
+          <div className="buttons w-full flex justify-between pt-4">
+            <Button type="button" onClick={goBack} className=' w-40'>
+              Voltar
+            </Button>
+            <Button type="submit" className='w-40'>
+              Próximo
+            </Button>
+
+          </div>
         </form>
       </Form>
     </main>
