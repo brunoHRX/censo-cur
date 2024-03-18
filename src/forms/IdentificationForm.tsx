@@ -45,7 +45,7 @@ const formSchema = z.object({
 export default function InicialForm( ) {
 
   const { onFormChange } = useFormContext();
-  const { formData, setFormData } = useFormDataContext();
+  const { setFormData } = useFormDataContext();
   
 
   const form = useForm<z.infer<typeof formSchema>>({

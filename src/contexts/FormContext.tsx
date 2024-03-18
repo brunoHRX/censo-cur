@@ -14,7 +14,7 @@ interface FormProviderProps {
 
 export const FormProvider: React.FC<FormProviderProps> = ({ children }) => {
   const [activeForm, setActiveForm] = useState<string>('InicialForm');
-  const [formHistory, setFormHistory] = useState<string[]>(['InicialForm']); // Estado para armazenar o histórico
+  const [, setFormHistory] = useState<string[]>(['InicialForm']); // Estado para armazenar o histórico
 
   const onFormChange = (formName: string) => {
     setFormHistory(currentHistory => [...currentHistory, formName]); // Atualiza o histórico
