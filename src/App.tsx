@@ -8,6 +8,8 @@ import { ThemeProvider } from './components/theme-provider';
 import InicialForm from './forms/IdentificationForm'
 import EquipmentForm from './forms/EquipamentForm'
 import Classification from './forms/ClassificationForm'
+import TeamForm from './forms/TeamForm';
+import EMAC from './forms/EmacSolicitacion';
 import ReviewPage from './forms/ReviewPage';
 import Header from './components/header';
 
@@ -37,6 +39,8 @@ export function App() {
                   {activeForm === 'InicialForm' && <InicialForm/>}
                   {activeForm === 'EquipmentForm' && <EquipmentForm/>}
                   {activeForm === 'Classification' && <Classification/>}
+                  {activeForm === 'TeamForm' && <TeamForm/>}
+                  {activeForm === 'EMAC' && <EMAC/>}
                   {activeForm === 'ReviewPage' && <ReviewPage/>}
                 </CardContent>
               </Card>

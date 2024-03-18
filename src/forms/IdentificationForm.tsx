@@ -107,7 +107,7 @@ export default function InicialForm( ) {
                   <Select onValueChange={field.onChange} defaultValue={field.value}>
                       <FormControl>
                         <SelectTrigger>
-                          <SelectValue placeholder="Escolha uma Unidaded" />
+                          <SelectValue placeholder="Escolha uma Unidade" />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
@@ -189,10 +189,9 @@ export default function InicialForm( ) {
                       <SelectContent>
                         <SelectItem value='padrao'>Censo Padrão</SelectItem>
                         <SelectItem value='Classification'>Censo de Classificação</SelectItem>
-                        <SelectItem value='equipe'>Censo de Equipe</SelectItem>
+                        <SelectItem value='TeamForm'>Censo de Equipe</SelectItem>
                         <SelectItem value='EquipmentForm'>Censo de Equipamentos</SelectItem>
-                        <SelectItem value='pacientes'>Censo Pacientes</SelectItem>
-                        <SelectItem value='emac'>Solicitação da EMAC</SelectItem>
+                        <SelectItem value='EMAC'>Solicitação da EMAC</SelectItem>
                       </SelectContent>
                     </Select>
                   <FormMessage/>
