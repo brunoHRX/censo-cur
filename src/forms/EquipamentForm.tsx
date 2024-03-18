@@ -84,8 +84,8 @@ const formSchema = z.object({
 export default function EquipmentForm() {
 
   const { onFormChange } = useFormContext();
-  const { formData, setFormData, submitAllForms } = useFormDataContext();
-
+  // const { formData, setFormData, submitAllForms } = useFormDataContext();
+  const { setFormData } = useFormDataContext();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {

@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button"
 import { Switch } from "@/components/ui/switch"
 
 import {
-  CardDescription,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";

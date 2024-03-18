@@ -188,7 +188,7 @@ export default function InicialForm( ) {
                       </FormControl>
                       <SelectContent>
                         <SelectItem value='padrao'>Censo Padrão</SelectItem>
-                        <SelectItem value='fichas'>Censo de Classificação</SelectItem>
+                        <SelectItem value='Fichas'>Censo de Classificação</SelectItem>
                         <SelectItem value='equipe'>Censo de Equipe</SelectItem>
                         <SelectItem value='EquipmentForm'>Censo de Equipamentos</SelectItem>
                         <SelectItem value='pacientes'>Censo Pacientes</SelectItem>

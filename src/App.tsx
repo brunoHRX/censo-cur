@@ -34,10 +34,10 @@ export function App() {
             <div className="mx-auto my-6 max-w-lg">
               <Card>
                 <CardContent>
-                  <Classification/>
-                  {/* {activeForm === 'InicialForm' && <InicialForm/>}
+                  {activeForm === 'InicialForm' && <InicialForm/>}
                   {activeForm === 'EquipmentForm' && <EquipmentForm/>}
-                  {activeForm === 'ReviewPage' && <ReviewPage/>} */}
+                  {activeForm === 'Fichas' && <Classification/>}
+                  {activeForm === 'ReviewPage' && <ReviewPage/>}
                 </CardContent>
               </Card>
             </div>
