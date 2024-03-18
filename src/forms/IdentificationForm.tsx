@@ -3,6 +3,7 @@ import { z } from "zod"
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useFormContext } from "@/contexts/FormContext";
+import { useFormDataContext } from '@/contexts/DataFormContext';
 import { Input } from "@/components/ui/input"
 import {
   Select,
@@ -44,6 +45,7 @@ const formSchema = z.object({
 export default function InicialForm( ) {
 
   const { onFormChange } = useFormContext();
+  const { formData, setFormData } = useFormDataContext();
   
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -57,8 +59,8 @@ export default function InicialForm( ) {
 
 
   const handleSubmit = (values: z.infer<typeof formSchema>) => {
-    
-    console.log({ values});
+    setFormData({...formData, ...values})
+    console.log({ setFormData});
     onFormChange(values.censo);
     // Aqui você pode redirecionar o usuário para o formulário específico do censo selecionado
     // e passar as informações usando o contexto do React, Redux ou outra ferramenta de estado.
@@ -109,16 +111,16 @@ export default function InicialForm( ) {
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        <SelectItem value='UPA.ALMEIDA'>UPA VILA ALMEIDA</SelectItem>
-                        <SelectItem value='UPA.CORONEL'>UPA CORONEL ANTONINO</SelectItem>
-                        <SelectItem value='UPA.SANTA'>UPA SANTA MONICA</SelectItem>
-                        <SelectItem value='UPA.UNIVERSITARIO'>UPA UNIVERSITARIO</SelectItem>
-                        <SelectItem value='UPA.LEBLON'>UPA LEBLON</SelectItem>
-                        <SelectItem value='UPA.MORENINHAS'>UPA MORENINHAS</SelectItem>
-                        <SelectItem value='CRS.COOPHAVILA'>CRS COOPHAVILA</SelectItem>
-                        <SelectItem value='CRS.NOVA'>CRS NOVA BAHIA</SelectItem>
-                        <SelectItem value='CRS.TIRADENTES'>CRS TIRADENTES</SelectItem>
-                        <SelectItem value='CRS.AERO'>CRS AERO RANCHO</SelectItem>
+                        <SelectItem value='UPA ALMEIDA'>UPA VILA ALMEIDA</SelectItem>
+                        <SelectItem value='UPA CORONEL'>UPA CORONEL ANTONINO</SelectItem>
+                        <SelectItem value='UPA SANTA'>UPA SANTA MONICA</SelectItem>
+                        <SelectItem value='UPA UNIVERSITARIO'>UPA UNIVERSITARIO</SelectItem>
+                        <SelectItem value='UPA LEBLON'>UPA LEBLON</SelectItem>
+                        <SelectItem value='UPA MORENINHAS'>UPA MORENINHAS</SelectItem>
+                        <SelectItem value='CRS COOPHAVILA'>CRS COOPHAVILA</SelectItem>
+                        <SelectItem value='CRS NOVA'>CRS NOVA BAHIA</SelectItem>
+                        <SelectItem value='CRS TIRADENTES'>CRS TIRADENTES</SelectItem>
+                        <SelectItem value='CRS AERO'>CRS AERO RANCHO</SelectItem>
 
                       </SelectContent>
                     </Select>

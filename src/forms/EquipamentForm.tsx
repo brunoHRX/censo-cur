@@ -1,5 +1,9 @@
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
+
+import { useFormContext } from "@/contexts/FormContext";
+import { useFormDataContext } from '@/contexts/DataFormContext';
 
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
@@ -22,33 +26,56 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form"
-import { useForm } from 'react-hook-form';
 
 const formSchema = z.object({
-  monitors: z.number({
+  monitors: z.string({
     required_error: "É obrigatório informar um valor.",
-  }).min(0).max(9),
-  oximeters: z.number({
+  }).regex(/^[0-9]+$/, "O valor deve conter apenas dígitos de 0 a 9"),
+  oximeters: z.string({
     required_error: "É obrigatório informar um valor.",
-  }).min(0).max(9),
-  defibrillators: z.number({
+  }).regex(/^[0-9]+$/, "O valor deve conter apenas dígitos de 0 a 9"),
+  defibrillators: z.string({
     required_error: "É obrigatório informar um valor.",
-  }).min(0).max(9),
-  ecgs: z.number({
+  }).regex(/^[0-9]+$/, "O valor deve conter apenas dígitos de 0 a 9"),
+  ecgs: z.string({
     required_error: "É obrigatório informar um valor.",
-  }).min(0).max(9),
-  telecardios: z.number({
+  }).regex(/^[0-9]+$/, "O valor deve conter apenas dígitos de 0 a 9"),
+  telecardios: z.string({
     required_error: "É obrigatório informar um valor.",
-  }).min(0).max(9),
-  fetalMonitors: z.number({
+  }).regex(/^[0-9]+$/, "O valor deve conter apenas dígitos de 0 a 9"),
+  fetalMonitors: z.string({
     required_error: "É obrigatório informar um valor.",
-  }).min(0).max(9),
+  }).regex(/^[0-9]+$/, "A string deve conter apenas dígitos de 0 a 9"),
   hasXRay: z.boolean({
     required_error: "É obrigatório selecionar uma opção.",
   }),
   hasAutoclave: z.boolean({
     required_error: "É obrigatório selecionar uma opção.",
   }),
+  // monitors: z.number({
+  //   required_error: "É obrigatório informar um valor.",
+  // }).min(0).max(9),
+  // oximeters: z.number({
+  //   required_error: "É obrigatório informar um valor.",
+  // }).min(0).max(9),
+  // defibrillators: z.number({
+  //   required_error: "É obrigatório informar um valor.",
+  // }).min(0).max(9),
+  // ecgs: z.number({
+  //   required_error: "É obrigatório informar um valor.",
+  // }).min(0).max(9),
+  // telecardios: z.number({
+  //   required_error: "É obrigatório informar um valor.",
+  // }).min(0).max(9),
+  // fetalMonitors: z.number({
+  //   required_error: "É obrigatório informar um valor.",
+  // }).min(0).max(9),
+  // hasXRay: z.boolean({
+  //   required_error: "É obrigatório selecionar uma opção.",
+  // }),
+  // hasAutoclave: z.boolean({
+  //   required_error: "É obrigatório selecionar uma opção.",
+  // }),
 });
 
 // TypeScript interface for the form data, derived from the zod schema
@@ -56,15 +83,18 @@ const formSchema = z.object({
 
 export default function EquipmentForm() {
 
+  const { onFormChange } = useFormContext();
+  const { formData, setFormData, submitAllForms } = useFormDataContext();
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      monitors: 0,
-      oximeters: 0,
-      defibrillators: 0,
-      ecgs: 0,
-      telecardios: 0,
-      fetalMonitors: 0,
+      monitors: '0',
+      oximeters: '0',
+      defibrillators: '0',
+      ecgs: '0',
+      telecardios: '0',
+      fetalMonitors: '0',
       hasXRay: false,
       hasAutoclave: false
     }
@@ -72,7 +102,12 @@ export default function EquipmentForm() {
 
 
   const handleSubmit = (values: z.infer<typeof formSchema>) => {
-    console.log({ values});
+    setFormData(formData => {
+      const updateFormData = {...formData, ...values}
+      return updateFormData;
+    })
+    console.log({ setFormData});
+    onFormChange('ReviewPage');
   };
 
   return (
