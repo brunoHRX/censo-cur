@@ -10,6 +10,7 @@ import Classification from './forms/ClassificationForm'
 import TeamForm from './forms/TeamForm';
 import EMAC from './forms/EmacSolicitacion';
 import ReviewPage from './forms/ReviewPage';
+import SuccesPage from './forms/SuccessPage';
 import Header from './components/header';
 
 import {
@@ -37,6 +38,8 @@ export function App() {
         return <EMAC  />;
       case 'ReviewPage':
         return <ReviewPage  />;
+      case 'SuccesPage':
+        return <SuccesPage />;
       default:
         return <InicialForm />;
     }
