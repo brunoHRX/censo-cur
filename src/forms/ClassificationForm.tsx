@@ -2,7 +2,7 @@ import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import { useFormContext } from "@/contexts/FormContext";
-
+import { useFormDataContext } from '@/contexts/DataFormContext';
 
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
@@ -97,6 +97,8 @@ export default function Classification() {
 
   const [pediatric, setPediatric] = useState(false)
   const { goBack } = useFormContext();
+  const { onFormChange } = useFormContext();
+  const { setFormData } = useFormDataContext();
 
   const hasPediatric = () => {
     setPediatric(setPediatric => !setPediatric)
@@ -127,7 +129,12 @@ export default function Classification() {
 
 
   const handleSubmit = (values: z.infer<typeof formSchema>) => {
-    console.log({values});
+    setFormData(formData => {
+      const updateFormData = {...formData, ...values}
+      return updateFormData;
+    })
+    console.log({ setFormData});
+    onFormChange('ReviewPage');
   };
 
   return (

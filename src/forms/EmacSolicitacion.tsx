@@ -1,6 +1,7 @@
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useFormContext } from "@/contexts/FormContext";
+import { useFormDataContext } from '@/contexts/DataFormContext';
 
 import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
@@ -46,7 +47,9 @@ const formSchema = z.object({
 
 
 export default function EMAC() {
+  const { onFormChange } = useFormContext();
   const { goBack } = useFormContext();
+  const { setFormData } = useFormDataContext();
 
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -59,7 +62,12 @@ export default function EMAC() {
 
 
   const handleSubmit = (values: z.infer<typeof formSchema>) => {
-    console.log({values});
+    setFormData(formData => {
+      const updateFormData = {...formData, ...values}
+      return updateFormData;
+    })
+    console.log({ setFormData});
+    onFormChange('ReviewPage');
   };
 
   return (

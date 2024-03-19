@@ -1,4 +1,5 @@
-import { useFormDataContext } from "@/contexts/DataFormContext";
+import { useFormContext } from "@/contexts/FormContext";
+import { useFormDataContext } from '@/contexts/DataFormContext';
 
 
 import { Button } from "@/components/ui/button"
@@ -6,6 +7,7 @@ import { Button } from "@/components/ui/button"
 export default function ReviewPage() {
 
   const {formData, submitAllForms} = useFormDataContext();
+  const { goBack } = useFormContext();
 
   const handleSubmit = () => {
     // implementar funções
@@ -25,9 +27,14 @@ export default function ReviewPage() {
           </div>
         ))}
       </div>
-      <Button onClick={handleSubmit}>
-        Confirmar e Enviar!
-      </Button>
+      <div className="buttons w-full flex justify-between pt-4">
+        <Button type="button" onClick={goBack} className=' w-40'>
+          Voltar
+        </Button>
+        <Button onClick={handleSubmit}>
+          Confirmar e Enviar!
+        </Button>
+      </div>
     </div>
   )
 
