@@ -52,10 +52,10 @@ export default function TeamForm() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      clinicoPrev: '0',
-      clinicoReal: '0',
-      infantilPrev: '0',
-      infantilReal: '0',
+      clinicoPrev: '',
+      clinicoReal: '',
+      infantilPrev: '',
+      infantilReal: '',
     }
   })
 

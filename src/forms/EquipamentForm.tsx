@@ -65,12 +65,12 @@ export default function EquipmentForm() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      monitors: '0',
-      oximeters: '0',
-      defibrillators: '0',
-      ecgs: '0',
-      telecardios: '0',
-      fetalMonitors: '0',
+      monitors: '',
+      oximeters: '',
+      defibrillators: '',
+      ecgs: '',
+      telecardios: '',
+      fetalMonitors: '',
       hasXRay: false,
       hasAutoclave: false
     }
