@@ -3,8 +3,8 @@ import './styles/global.css'
 import { FormProvider, useFormContext } from './contexts/FormContext'
 import { FormDataProvider } from './contexts/DataFormContext';
 import { ThemeProvider } from './components/theme-provider';
-
 import InicialForm from './forms/IdentificationForm'
+import GeneralForm from './forms/GeneralForm';
 import EquipmentForm from './forms/EquipamentForm'
 import Classification from './forms/ClassificationForm'
 import TeamForm from './forms/TeamForm';
@@ -28,6 +28,8 @@ export function App() {
     switch (activeForm) {
       case 'InicialForm':
         return <InicialForm />;
+      case 'GeneralForm':
+        return <GeneralForm />;
       case 'EquipmentForm':
         return <EquipmentForm  />;
       case 'Classification':

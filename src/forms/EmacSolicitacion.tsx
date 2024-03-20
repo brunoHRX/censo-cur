@@ -40,7 +40,7 @@ const formSchema = z.object({
   }),
   bigMotive: z.string({
     required_error: "É obrigatório informar uma resposta.",
-  }),
+  }).toUpperCase(),
 });
 
 

@@ -33,7 +33,7 @@ import {
 
 
 const formSchema = z.object({
-  name: z.string().min(2, { message: "Nome do responsável é obrigatório" }),
+  name: z.string().min(2, { message: "Nome do responsável é obrigatório" }).toUpperCase(),
   location: z.string({required_error: "Selecione uma Unidade"}),
   phone: z.string().min(2, { message: "Telefone é obrigatório" }).regex(/^\+?[1-9]\d{1,14}$/, { message: "Telefone inválido" }), // Regex simples para validação de telefone internacional
   job: z.string().min(2, { message: "Cargo ou função é obrigatório" }),
@@ -53,7 +53,6 @@ export default function InicialForm( ) {
     defaultValues: {
       name: "",
       phone: "",
-      job: ""
     }
   });
 
@@ -97,38 +96,6 @@ export default function InicialForm( ) {
             }
           />
 
-          <FormField
-            control={form.control}
-            name="location"
-            render={
-              ({field}) => {
-                return <FormItem>
-                  <FormLabel>Qual a sua Unidade de Saúde?</FormLabel>
-                  <Select onValueChange={field.onChange} defaultValue={field.value}>
-                      <FormControl>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Escolha uma Unidade" />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        <SelectItem value='UPA ALMEIDA'>UPA VILA ALMEIDA</SelectItem>
-                        <SelectItem value='UPA CORONEL'>UPA CORONEL ANTONINO</SelectItem>
-                        <SelectItem value='UPA SANTA'>UPA SANTA MONICA</SelectItem>
-                        <SelectItem value='UPA UNIVERSITARIO'>UPA UNIVERSITARIO</SelectItem>
-                        <SelectItem value='UPA LEBLON'>UPA LEBLON</SelectItem>
-                        <SelectItem value='UPA MORENINHAS'>UPA MORENINHAS</SelectItem>
-                        <SelectItem value='CRS COOPHAVILA'>CRS COOPHAVILA</SelectItem>
-                        <SelectItem value='CRS NOVA'>CRS NOVA BAHIA</SelectItem>
-                        <SelectItem value='CRS TIRADENTES'>CRS TIRADENTES</SelectItem>
-                        <SelectItem value='CRS AERO'>CRS AERO RANCHO</SelectItem>
-
-                      </SelectContent>
-                    </Select>
-                  <FormMessage/>
-                </FormItem>
-              }
-            }
-          />
           
           <FormField
             control={form.control}
@@ -136,7 +103,7 @@ export default function InicialForm( ) {
             render={
               ({field}) => {
                 return <FormItem>
-                  <FormLabel>Celular para Referência (ex: 67991399445)</FormLabel>
+                  <FormLabel>Celular para Referência</FormLabel>
                   <FormControl>
                     <Input
                       placeholder='Informe seu nome' 
@@ -144,6 +111,9 @@ export default function InicialForm( ) {
                       {...field}
                     />
                   </FormControl>
+                  <FormDescription>
+                    Modelo de resposta - (ex: 67991399445)
+                  </FormDescription>
                   <FormMessage/>
                 </FormItem>
               }
@@ -157,21 +127,56 @@ export default function InicialForm( ) {
               ({field}) => {
                 return <FormItem>
                   <FormLabel>Cargo ou Função</FormLabel>
-                  <FormControl>
-                    <Input
-                      placeholder='Informe sua Função ou Cargo' 
-                      className='text-cur-dark' 
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormDescription>
-                  (ex: Enfermeira - Administrativo - Gerente)
-                  </FormDescription>
+                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Escolha uma opção" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        <SelectItem value='Enfermeiro'>Enfermeiro(a)</SelectItem>
+                        <SelectItem value='Gerente'>Gerente</SelectItem>
+                        <SelectItem value='Administrativo'>Administrativo</SelectItem>
+                      </SelectContent>
+                    </Select>
                   <FormMessage/>
                 </FormItem>
               }
             }
           />
+
+            <FormField
+              control={form.control}
+              name="location"
+              render={
+                ({field}) => {
+                  return <FormItem>
+                    <FormLabel>Qual a sua Unidade de Saúde?</FormLabel>
+                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                        <FormControl>
+                          <SelectTrigger>
+                            <SelectValue placeholder="Escolha uma Unidade" />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          <SelectItem value='UPA ALMEIDA'>UPA VILA ALMEIDA</SelectItem>
+                          <SelectItem value='UPA CORONEL'>UPA CORONEL ANTONINO</SelectItem>
+                          <SelectItem value='UPA SANTA'>UPA SANTA MONICA</SelectItem>
+                          <SelectItem value='UPA UNIVERSITARIO'>UPA UNIVERSITARIO</SelectItem>
+                          <SelectItem value='UPA LEBLON'>UPA LEBLON</SelectItem>
+                          <SelectItem value='UPA MORENINHAS'>UPA MORENINHAS</SelectItem>
+                          <SelectItem value='CRS COOPHAVILA'>CRS COOPHAVILA</SelectItem>
+                          <SelectItem value='CRS NOVA'>CRS NOVA BAHIA</SelectItem>
+                          <SelectItem value='CRS TIRADENTES'>CRS TIRADENTES</SelectItem>
+                          <SelectItem value='CRS AERO'>CRS AERO RANCHO</SelectItem>
+  
+                        </SelectContent>
+                      </Select>
+                    <FormMessage/>
+                  </FormItem>
+                }
+              }
+            />
 
           <FormField
             control={form.control}
@@ -187,7 +192,7 @@ export default function InicialForm( ) {
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        <SelectItem value='padrao'>Censo Padrão</SelectItem>
+                        <SelectItem value='GeneralForm'>Censo Padrão</SelectItem>
                         <SelectItem value='Classification'>Censo de Classificação</SelectItem>
                         <SelectItem value='TeamForm'>Censo de Equipe</SelectItem>
                         <SelectItem value='EquipmentForm'>Censo de Equipamentos</SelectItem>
