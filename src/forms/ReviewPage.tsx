@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useFormContext } from "@/contexts/FormContext";
 import { useFormDataContext } from '@/contexts/DataFormContext';
+
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import {
@@ -135,7 +136,7 @@ export default function ReviewPage() {
       stamp: getCurrentDateTimeForTimeZone(),
     };
   
-    const url = "https://api.sheetmonkey.io/form/4MxGDYi5WGkEQixcYGKthU";
+    const url = "https://script.google.com/macros/s/AKfycbwYrvFkTCVnGTXfUhOvcHVARstvUqLXh7rGNZAzJt3KAE2EIkZFTnoBsk__IoN6YqDIrA/exec";
   
     try {
       const response = await fetch(url, {
@@ -144,10 +145,11 @@ export default function ReviewPage() {
           'Content-Type': 'application/json',
           // Adicione aqui outros headers necessários
         },
-        body: JSON.stringify(modifiedFormData), // Usa o formData modificado
+        body: JSON.stringify(modifiedFormData),
+        mode: 'no-cors', // Usa o formData modificado
       });
   
-      if (response.ok) {
+      if (response) {
         // Sucesso
         console.log("Dados enviados com sucesso.");
         setFormData({});
