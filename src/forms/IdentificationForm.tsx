@@ -106,7 +106,7 @@ export default function InicialForm( ) {
                   <FormLabel>Celular para Referência</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder='Informe seu nome' 
+                      placeholder='Informe seu telefone' 
                       className='text-cur-dark' 
                       {...field}
                     />
