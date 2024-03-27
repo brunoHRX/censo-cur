@@ -12,7 +12,7 @@ module.exports = {
     colors: {
       'cur-blue': '#1C415B',
       'cur-orange': '#FF9B09',
-      'cur-grey': 'C8C6C6',
+      'cur-grey': '#C8C6C6',
       'cur-offwhite': '#F5F5F5',
       'cur-dark': '#191717'
     },
