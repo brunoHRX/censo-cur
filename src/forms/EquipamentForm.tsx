@@ -246,7 +246,7 @@ export default function EquipmentForm() {
               ({field}) => {
                 return <FormItem className='flex flex-row items-center justify-between rounded-lg'>
                   <div className="space-y-0 5">
-                    <FormLabel>Possui Raio-X?</FormLabel>
+                    <FormLabel>Possui Raio-X Funcionando?</FormLabel>
                     <FormDescription>
                       (Caso não possua, deixar desativado)
                     </FormDescription>
@@ -270,7 +270,7 @@ export default function EquipmentForm() {
               ({field}) => {
                 return <FormItem className='flex flex-row items-center justify-between rounded-lg'>
                   <div className="space-y-0 5">
-                    <FormLabel>Possui Autoclave?</FormLabel>
+                    <FormLabel>Possui Autoclave Funcionando?</FormLabel>
                     <FormDescription>
                       (Caso não possua, deixar desativado)
                     </FormDescription>
