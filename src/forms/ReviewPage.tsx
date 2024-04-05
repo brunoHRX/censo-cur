@@ -136,7 +136,7 @@ export default function ReviewPage() {
       stamp: getCurrentDateTimeForTimeZone(),
     };
   
-    const url = "https://script.google.com/macros/s/AKfycbwYrvFkTCVnGTXfUhOvcHVARstvUqLXh7rGNZAzJt3KAE2EIkZFTnoBsk__IoN6YqDIrA/exec";
+    // const url = INSIRA A URL DA PLANILHA DO GOOGLE PUBLICA PARA USAR DE BANCO E REGISTRO DAS INFORMAÇÕES;
   
     try {
       const response = await fetch(url, {
