@@ -1,6 +1,3 @@
-Para criar um README interessante e convidativo para o seu projeto "Censo CUR", é fundamental comunicar o valor e a funcionalidade do projeto de forma clara, destacando suas principais características e tecnologias utilizadas. Aqui está uma sugestão de como você pode estruturar o README, com uma linguagem envolvente e informativa:
-
----
 
 # Censo CUR 🚀
 
