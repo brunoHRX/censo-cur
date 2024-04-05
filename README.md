@@ -90,7 +90,6 @@ Certifique-se de que a URL da fonte de dados seja segura e de que você tem as d
 
 ---
 
-Incluindo essas instruções, você facilita para que outros desenvolvedores façam as alterações necessárias para integrar o censo com diferentes fontes de dados, personalizando a aplicação conforme necessário.
 
 ## Contribua! 🤝
 
@@ -102,4 +101,4 @@ Este projeto está sob a [MIT License](LICENSE) - veja o arquivo LICENSE para ma
 
 ---
 
-Espero que este modelo de README sirva como uma excelente base para você apresentar o seu projeto de maneira criativa e informativa. Sinta-se livre para ajustar qualquer parte para melhor refletir as especificidades e o espírito do seu projeto!
+
