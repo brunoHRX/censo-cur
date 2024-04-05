@@ -49,6 +49,52 @@ npm run dev
 
 Visite [http://localhost:3000](http://localhost:3000) para ver o projeto em ação!
 
+Adicionar instruções claras e específicas no README para orientar os colaboradores ou usuários a fazerem alterações em arquivos cruciais pode ser muito útil, especialmente quando se trata de personalizar a aplicação para atender às necessidades individuais. Vamos incluir uma seção no README que explica como e onde fazer essas alterações nos arquivos relevantes.
+
+---
+
+## Personalização da Fonte de Dados 🔄
+
+Para integrar o **Censo CUR** com sua fonte de dados exclusiva, é necessário atualizar a URL da planilha ou banco de dados nas requisições de fetch no seguinte componente:
+
+- `ReviewPage.tsx`
+
+
+### Passos para a Atualização 🛠
+
+1. **Localize o Arquivo**: Navegue até o componente listado acima no diretório do projeto.
+
+2. **Edite os Arquivos**: Abra cada um dos arquivos em seu editor de código de escolha.
+
+3. **Insira a URL da Fonte de Dados**:
+   Para cada arquivo, localize a linha que contém a requisição fetch. Será algo semelhante a:
+   ```typescript
+   const response = await fetch('INSIRA A URL DA PLANILHA OU BANCO PARA EFETIVAR AS REQUISIÇÕES AQUI');
+   ```
+   Substitua `'INSIRA A URL DA PLANILHA OU BANCO PARA EFETIVAR AS REQUISIÇÕES AQUI'` pela URL da sua fonte de dados.
+
+4. **Salve as Alterações**: Após inserir as URLs corretas, salve os arquivos.
+
+5. **Teste as Alterações**: Execute o projeto localmente para garantir que as alterações foram bem-sucedidas e que os dados estão sendo corretamente recuperados e exibidos no dashboard.
+
+### Exemplo de Código Modificado
+
+Após a alteração, o trecho de código deve se parecer com algo assim:
+
+```typescript
+// Exemplo em ReviewPage.tsx
+const response = await fetch('https://minhaurl.com/planilha-dados');
+```
+
+
+### Importante
+
+Certifique-se de que a URL da fonte de dados seja segura e de que você tem as devidas permissões para acessá-la. A segurança e a privacidade dos dados devem ser sempre priorizadas.
+
+---
+
+Incluindo essas instruções, você facilita para que outros desenvolvedores façam as alterações necessárias para integrar o censo com diferentes fontes de dados, personalizando a aplicação conforme necessário.
+
 ## Contribua! 🤝
 
 O Censo CUR é um projeto em constante evolução, e adoraríamos ter sua contribuição! Seja adicionando novas funcionalidades, corrigindo bugs ou melhorando a documentação, sua ajuda é sempre bem-vinda.
